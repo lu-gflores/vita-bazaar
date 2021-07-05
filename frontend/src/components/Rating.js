@@ -26,7 +26,8 @@ const Rating = ({ value, text, color }) => {
 
 //sets default color to yellow star icons
 Rating.defaultProps = {
-    color: '#f8e825'
+    color: '#f8e825',
+    value: 0
 }
 
 //checks the prop types
