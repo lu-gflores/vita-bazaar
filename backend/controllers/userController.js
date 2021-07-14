@@ -22,4 +22,11 @@ const authUser = asyncHandler(async (req, res) => {
     }
 })
 
-export { authUser }
+// auth get user profile
+// get /api/users/profile
+// private access
+const getUserProfile = asyncHandler(async (req, res) => {
+    res.send('Success')
+})
+
+export { authUser, getUserProfile }
