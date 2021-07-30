@@ -23,10 +23,15 @@ const OrderScreen = ({ match }) => {
 
 
     useEffect(() => {
-        dispatch(getOrderDetails(orderId))
-    }, [])
+        if (!order || order._id !== orderId) {
+            dispatch(getOrderDetails(orderId))
+        }
+    }, [order, orderId])
 
-    return loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : <>
+    return loading ? (
+        <Loader />
+    ) : error ? (<Message variant='danger'>{error}</Message>
+    ) : (<>
         <h1>Order {order._id}</h1>
         <Row>
             <Col md={8}>
@@ -61,7 +66,8 @@ const OrderScreen = ({ match }) => {
                     </ListGroup.Item>
                     <ListGroup.Item>
                         <h2>Order Items</h2>
-                        {order.orderItems.length === 0 ? <Message>Order is empty </Message> : (
+                        {order.orderItems.length === 0 ? (<Message>Order is empty </Message>
+                        ) : (
                             <ListGroup variant='flush'>
                                 {order.orderItems.map((item, index) => (
                                     <ListGroup.Item key={index}>
@@ -121,5 +127,6 @@ const OrderScreen = ({ match }) => {
             </Col>
         </Row>
     </>
+    )
 }
 export default OrderScreen
